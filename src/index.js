@@ -30,7 +30,7 @@ export class ResetElement {
   static displayName = 'ResetElement';
   render() {
     return (
-        <Element
+      <Element
         color="inherit"
         fontFamily="inherit"
         fontWeight="inherit"
