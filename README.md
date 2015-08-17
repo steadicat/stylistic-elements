@@ -10,7 +10,7 @@ import {Element} from 'stylistic-elements';
 <Element
   tag="input"
   type="text"
-  id"myElement"
+  id="myElement"
   onClick={onClickHandler}
   marginTop={12}
   translateY={24}
