@@ -1,6 +1,6 @@
 {
   "name": "stylistic-elements",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "A set of React components that make it easy to style elements using props.",
   "author": "Stefano J. Attardi (http://github.com/steadicat)",
   "main": "lib/index.js",
@@ -25,7 +25,7 @@
     "css"
   ],
   "dependencies": {
-    "react": "0.13.3",
+    "react": ">0.14.0-beta",
     "stylistic": "0.0.4"
   },
   "devDependencies": {
