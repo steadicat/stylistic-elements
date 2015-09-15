@@ -25,7 +25,7 @@
     "css"
   ],
   "dependencies": {
-    "react": ">0.14.0-beta",
+    "react": ">0.14.0-rc",
     "stylistic": "0.0.7"
   },
   "devDependencies": {
