@@ -25,11 +25,11 @@
     "css"
   ],
   "dependencies": {
-    "react": ">0.14.0-rc",
+    "react": "0.14.2",
     "stylistic": "0.0.8"
   },
   "devDependencies": {
-    "babel": "5.8.21"
+    "babel": "5.8.29"
   },
   "license": "MIT"
 }
