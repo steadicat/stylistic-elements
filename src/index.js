@@ -5,7 +5,7 @@ export function Element(props) {
   const attributes = extract(props);
 
   const {
-    tag: Tag='div',
+    tag: Tag = 'div',
     canvasHeight,
     canvasWidth,
     style,
