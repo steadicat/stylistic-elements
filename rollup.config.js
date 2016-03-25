@@ -5,9 +5,6 @@ import commonjs from 'rollup-plugin-commonjs';
 export default {
   entry: 'src/index.js',
   moduleName: 'StylisticElements',
-  globals: {
-    react: 'React',
-  },
   plugins: [
     babel({
       presets: ['es2015-rollup', 'react', 'stage-0'],
@@ -15,7 +12,7 @@ export default {
     nodeResolve({
       jsnext: true,
       main: true,
-      skip: ['react'],
+      skip: ['react', 'stylistic'],
     }),
     commonjs({
       include: 'node_modules/**',
