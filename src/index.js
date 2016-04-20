@@ -1,7 +1,45 @@
 import React from 'react';
 import {extract} from 'stylistic';
 
-export function Element(props) {
+let RENDER_LOGGING = false;
+
+export function enableRenderLogging(enabled) {
+  RENDER_LOGGING = enabled;
+}
+
+const log = process.env.NODE_ENV === 'production' ?
+  (x => x) :
+  ((shouldRender, displayName, reason) => {
+    if (RENDER_LOGGING && shouldRender) {
+      /* eslint no-console:0 */
+      console.info(`${displayName} rerendered because ${reason}.`);
+    }
+    return shouldRender;
+  });
+
+export function component(statelessComponent) {
+  const displayName = statelessComponent.name;
+  class PureComponent extends React.Component {
+    static displayName = displayName;
+    shouldComponentUpdate(nextProps) {
+      const props = this.props;
+      if (props.children !== nextProps.children) log(true, displayName, 'children changed');
+      for (let k in props) {
+        if (props[k] !== nextProps[k]) return log(true, displayName, `${k} changed`);
+      }
+      for (let k in nextProps) {
+        if (props[k] !== nextProps[k]) return log(true, displayName, `${k} changed`);
+      }
+      return false;
+    }
+    render() {
+      return statelessComponent(this.props);
+    }
+  }
+  return PureComponent;
+}
+
+export const Element = component(function Element(props) {
   const attributes = extract(props);
 
   const {
@@ -20,9 +58,9 @@ export function Element(props) {
       {...plainAttributes}
     />
   );
-}
+});
 
-export function ResetElement(props) {
+export const ResetElement = component(function ResetElement(props) {
   return (
     <Element
       color="inherit"
@@ -41,16 +79,16 @@ export function ResetElement(props) {
       {...props}
     />
   );
-}
+});
 
-export function Block(props) {
+export const Block = component(function Block(props) {
   return <Element display="block" {...props} />;
-}
+});
 
-export function Inline(props) {
+export const Inline = component(function Inline(props) {
   return <Element tag="span" {...props} />
-}
+});
 
-export function InlineBlock(props) {
+export const InlineBlock = component(function InlineBlock(props) {
   return <Element display="inline-block" verticalAlign="middle" {...props} />
-}
+});
